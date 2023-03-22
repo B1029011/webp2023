@@ -16,13 +16,13 @@ crossorigin="anonymous">
         var str = container.textContent;
         container.textContent = str.substring(1, str.length);
     }
-    new_chars();
+    add_new_chars();
     });
     
-    function new_chars() {
+    function add_new_chars() {
     var i;
     var count = Math.floor(Math.random()*3) + 1;
-    var letterSheet = ['q','w','e','r','t','y','u','i','o','p','a','s','d','e','f','g','h','j','k','l','z','x','c','v','b','n','m'];
+    var letterSheet = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'];
     
     for(i = 1; i <= count; i++) {
         container.textContent += letterSheet[Math.floor(Math.random()*26)];

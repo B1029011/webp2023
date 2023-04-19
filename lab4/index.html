@@ -1,4 +1,3 @@
-
 <html>
   <style>
 table {
@@ -26,18 +25,17 @@ th {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="UTF-8">
     <script>
-        var openurl = "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=6";
-        var xhr = new XMLHttpRequest();
+        const openurl = "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=6";
         var curPage = 1;
-        xhr.open("GET", openurl, true);
-        xhr.send();
-        xhr.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200) {
-                dataset = JSON.parse(this.responseText);
-                showDataset(dataset.slice((curPage-1)*10,curPage*10));
-                pagebutton(dataset, curPage);
-            }
-        };
+        fetch(openurl, {method:'GET'})
+          .then(res => {
+            return res.json();
+          }).then(result => {
+            console.log(result)
+            dataset = result;
+            showDataset(dataset.slice((curPage-1)*10,curPage*10));
+            pagebutton(dataset, curPage);
+          });
         function showPage(curData, ccurPage) {
             var page = document.getElementById("page_page");
             var btnNmu = Math.ceil(curData.length/10);
